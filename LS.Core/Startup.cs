@@ -29,7 +29,6 @@ namespace LS.Core
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = @"server=DESKTOP-9HM12DD\YYBSQL;database=EFCoreDemo;integrated security=SSPI;";
-            services.AddDbContext<EFCoreContext>(options => options.UseSqlServer(connection));
             // Ìí¼ÓSwagger
             services.AddSwaggerGen(options =>
             {
