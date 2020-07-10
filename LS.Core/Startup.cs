@@ -4,10 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using LS.Core.Data.EFCore;
+using LS.Core.Data.IService;
+using LS.Core.Data.Service;
+using LS.Core.Data.SQLDataConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,8 +33,11 @@ namespace LS.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"server=DESKTOP-9HM12DD\YYBSQL;database=EFCoreDemo;integrated security=SSPI;";
-            // 添加Swagger
+            services.AddDbContext<StudentDataBase>(options =>
+            {
+                var connectionString = this.Configuration["ConnectionStrings:Default"];
+                options.UseSqlServer(connectionString);
+            });
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "YuYuYu992 API", Version = "v1" });
@@ -40,6 +48,8 @@ namespace LS.Core
                 // 添加控制器层注释，true表示显示控制器注释
                 options.IncludeXmlComments(xmlPath, true);
             });
+            // 你写的可真厉害
+            services.AddScoped<IStudentService, StudentService>();
             services.AddControllers();
         }
 
