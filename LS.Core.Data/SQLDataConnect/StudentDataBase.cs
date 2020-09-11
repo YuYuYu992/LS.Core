@@ -14,8 +14,18 @@ namespace LS.Core.Data.SQLDataConnect
 
         }
 
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<Class> Classes { get; set; }
+        public DbSet<Student> STUDENT { get; set; }
+
+        public DbSet<Teacher> TEACHER { get; set; }
+
+        public DbSet<Class> CLASS { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Student>().HasKey(c => c.Id);
+        //    modelBuilder.Entity<Teacher>().HasKey(c => c.Id);
+        //    modelBuilder.Entity<Class>().HasKey(c => c.Id);
+        //}
+
     }
 }

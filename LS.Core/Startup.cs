@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using LS.Core.Data.EFCore;
 using LS.Core.Data.IService;
 using LS.Core.Data.Service;
 using LS.Core.Data.SQLDataConnect;
@@ -33,6 +32,8 @@ namespace LS.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //services.AddDbContext<StudentDataBase>();
             services.AddDbContext<StudentDataBase>(options =>
             {
                 var connectionString = this.Configuration["ConnectionStrings:Default"];

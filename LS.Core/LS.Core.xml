@@ -4,11 +4,12 @@
         <name>LS.Core</name>
     </assembly>
     <members>
-        <member name="M:LS.Core.Controllers.LearnController.#ctor(LS.Core.Data.IService.IStudentService)">
+        <member name="M:LS.Core.Controllers.LearnController.#ctor(LS.Core.Data.IService.IStudentService,LS.Core.Data.SQLDataConnect.StudentDataBase)">
             <summary>
             构造注入
             </summary>
             <param name="service"></param>
+            <param name="context"></param>
         </member>
         <member name="M:LS.Core.Controllers.LearnController.LearnTheFirst">
             <summary>
@@ -19,6 +20,18 @@
         <member name="M:LS.Core.Controllers.LearnController.StudentAdd(LS.Core.Data.Dto.StudentDto)">
             <summary>
             添加学生
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LS.Core.Controllers.LearnController.Search">
+            <summary>
+            查询学生
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LS.Core.Controllers.LearnController.CreateDataBase">
+            <summary>
+            数据库迁移
             </summary>
             <returns></returns>
         </member>
