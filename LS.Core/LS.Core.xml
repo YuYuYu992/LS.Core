@@ -4,7 +4,8 @@
         <name>LS.Core</name>
     </assembly>
     <members>
-        <member name="M:LS.Core.Controllers.LearnController.#ctor(LS.Core.Data.IService.IStudentService,LS.Core.Data.SQLDataConnect.StudentDataBase)">
+        <member name="M:LS.Core.Controllers.LearnController.#ctor(LS.Core.Data.IService.IStudentService)">
+            private StudentDataBase _context;
             <summary>
             构造注入
             </summary>

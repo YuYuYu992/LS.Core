@@ -12,6 +12,7 @@ namespace LS.Core.Data.ModelConfiguration
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.ToTable("Student").HasKey(P => P.Id);
+            builder.Property(p => p.Id).HasColumnName("GUID");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using LS.Core.Data.Entity;
+using LS.Core.Data.SQLDataConnect;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,15 +8,17 @@ using System.Text;
 
 namespace LS.Core.Data.EFCore
 {
+
+
     public class Respository<TEntity> : IRespository<TEntity> 
         where TEntity : EntityBase
     {
         private DbContext _dbContext;
         private DbSet<TEntity> DbSet = null;
-
-        public Respository(DbContext context)
+        public Respository()
         {
-            _dbContext = context;
+            var context = Loatar.Instance().GetService(typeof(StudentDataBase));
+            _dbContext = context as DbContext;
             DbSet = _dbContext.Set<TEntity>();
         }
 

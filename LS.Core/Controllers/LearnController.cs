@@ -17,17 +17,17 @@ namespace LS.Core.Controllers
     public class LearnController : ControllerBase
     {
         private IStudentService _service;
-        private StudentDataBase _context;
+        ///private StudentDataBase _context;
 
         /// <summary>
         /// 构造注入
         /// </summary>
         /// <param name="service"></param>
         /// <param name="context"></param>
-        public LearnController(IStudentService service,StudentDataBase context)
+        public LearnController(IStudentService service)
         {
             _service = service;
-            _context = context;
+           // _context = context;
         }
 
 
@@ -74,7 +74,8 @@ namespace LS.Core.Controllers
         {
             TemporaryDbContextFactory temporaryDb = new TemporaryDbContextFactory();
             temporaryDb.CreateDbContext();
-            _context.Database.Migrate();
+            
+          //  _context.Database.Migrate();
             return "迁移成功";
         }
     }

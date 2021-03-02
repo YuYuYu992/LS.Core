@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using LS.Core.Data.BaseDependcy;
+using LS.Core.Data.EFCore;
 using LS.Core.Data.IService;
 using LS.Core.Data.Service;
 using LS.Core.Data.SQLDataConnect;
@@ -25,9 +27,11 @@ namespace LS.Core
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+           // provider = serviceProvider;
         }
 
         public IConfiguration Configuration { get; }
+       // private IServiceProvider provider;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -49,9 +53,16 @@ namespace LS.Core
                 // 添加控制器层注释，true表示显示控制器注释
                 options.IncludeXmlComments(xmlPath, true);
             });
-            // 你写的可真厉害
+
+            services.AddScoped(typeof(IRespository<>), typeof(Respository<>));
             services.AddScoped<IStudentService, StudentService>();
+            var provider = services.BuildServiceProvider();
+            var contxt = provider.GetService(typeof(StudentDataBase));
+            Loatar.Instance().SerProvider(provider);
+
+            // 你写的可真厉害
             services.AddControllers();
+             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
